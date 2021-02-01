@@ -1,5 +1,9 @@
+import Initial from "../src/pages/Initial";
+
+import "../src/pages/global.css";
+
 function App() {
-  return <h1 className="text-danger">Iniciando...</h1>;
+  return <Initial />;
 }
 
 export default App;
