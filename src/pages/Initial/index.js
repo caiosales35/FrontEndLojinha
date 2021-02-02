@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { FiLogIn } from "react-icons/fi";
+import { Link } from "react-router-dom";
+
 import message from "../../components/MessageAlert/messageAlert";
 import initialImage from "../../assets/images/laptop.png";
 import logoImage from "../../assets/images/logo2.png";
@@ -45,10 +47,10 @@ function Initial() {
           <button className="button" type="submit">
             Entrar
           </button>
-          <a className="back-link" to="/register">
+          <Link className="back-link" to="/register">
             <FiLogIn size={16} color="#4e44dd" />
             Criar meu cadastro
-          </a>
+          </Link>
         </form>
       </section>
     </div>

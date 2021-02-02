@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { FiArrowLeft } from "react-icons/fi";
-import message from "../../components/MessageAlert/messageAlert";
+import { Link, useHistory } from "react-router-dom";
 import validarCpf from "validar-cpf";
 
-import "./styles.css";
+import message from "../../components/MessageAlert/messageAlert";
 import logoImg from "../../assets/images/logo.png";
+import "./styles.css";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -13,6 +14,8 @@ export default function Register() {
   const [dateB, setDateB] = useState("");
   const [cpf, setCpf] = useState("");
 
+  const history = useHistory();
+
   function validarNasc(dateB) {
     const today = new Date();
     return today > new Date(dateB) ? true : false;
@@ -20,8 +23,6 @@ export default function Register() {
 
   async function handleRegister(e) {
     e.preventDefault();
-
-    console.log(dateB);
 
     if (!validarCpf(cpf)) {
       message("Erro!", "CPF invalido");
@@ -32,7 +33,11 @@ export default function Register() {
     }
 
     if (validarCpf(cpf) && validarNasc(dateB)) {
-      message("Sucesso!", "Cadastro realizado com sucesso");
+      message(
+        "Cadastro realizado com sucesso",
+        "Faça login para começar a comprar",
+        history.push("/")
+      );
     }
   }
 
@@ -42,10 +47,10 @@ export default function Register() {
         <section>
           <img src={logoImg} alt="Lojinha logo" />
           <p>Faça seu cadastro e entre na plataforma!</p>
-          <a className="back-link" to="/">
+          <Link className="back-link" to="/">
             <FiArrowLeft size={16} color="#4e44dd" />
             Já tenho cadastro
-          </a>
+          </Link>
         </section>
         <form onSubmit={handleRegister}>
           <input

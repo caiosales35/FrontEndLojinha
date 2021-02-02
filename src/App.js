@@ -1,9 +1,8 @@
-import Initial from "../src/pages/Initial";
-
+import Routes from "./routes";
 import "../src/pages/global.css";
 
 function App() {
-  return <Initial />;
+  return <Routes />;
 }
 
 export default App;
