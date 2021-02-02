@@ -9,7 +9,7 @@ function Initial() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
 
     if (email === "caio@teste.com" && password === "caio123") {
