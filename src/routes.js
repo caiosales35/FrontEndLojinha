@@ -1,17 +1,25 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Initial from "./pages/Initial";
 import Register from "./pages/Register";
 import Feed from "./pages/Feed";
+import Header from "./components/Header";
+
+function ProductsFeed() {
+  return (
+    <>
+      <Header />
+      <Feed />
+    </>
+  );
+}
 
 function Routes() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={Initial} />
-        <Route path="/register" component={Register} />
-        <Route path="/feed" component={Feed} />
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route path="/" exact component={Initial} />
+      <Route path="/register" component={Register} />
+      <Route path="/feed" component={ProductsFeed} />
+    </Switch>
   );
 }
 
