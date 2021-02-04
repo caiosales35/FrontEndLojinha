@@ -7,6 +7,7 @@ import rootReducer from "./modules/rootReducer";
 const persistConfig = {
   key: "Lojinha",
   storage,
+  blacklist: ["order"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

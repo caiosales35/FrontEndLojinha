@@ -4,7 +4,8 @@ import { addOrder } from "./actions";
 const order = createReducer([], {
   [addOrder]: (state, action) => {
     const { payload } = action;
-    state.push(payload);
+    state = payload;
+    return state;
   },
 });
 

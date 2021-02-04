@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Register from "./pages/Register";
 import Feed from "./pages/Feed";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 function ProductsFeed() {
   return (
@@ -65,6 +66,7 @@ function Routes() {
       <PublicRoute path="/register" component={Register} />
       <PrivateRoute path="/feed" component={ProductsFeed} />
       <PrivateRoute path="/cart" component={MyCart} />
+      <PrivateRoute path="/checkout" component={Checkout} />
     </Switch>
   );
 }

@@ -6,6 +6,7 @@ import message from "../../components/MessageAlert/messageAlert";
 import * as CartActions from "../../store/modules/cart/actions";
 import * as OrderActions from "../../store/modules/order/actions";
 import "./styles.css";
+import { useHistory } from "react-router-dom";
 
 function Cart() {
   const [payment, setPayment] = useState("boleto");
@@ -17,9 +18,10 @@ function Cart() {
   const [sCode, setSCode] = useState("");
   const [months, setMonths] = useState("");
   const user = useSelector((state) => state.auth.user);
-
   const [isCard, setIsCard] = useState(false);
+
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const cart = useSelector((state) =>
     state.cart.map((product) => ({
@@ -82,8 +84,10 @@ function Cart() {
       payment,
       user,
     };
-    // salva no redux, limpa carrinho, e redireciona para pagina de visualizar pedido
+    // <requisicao para a api para salvar o pedido>
     dispatch(OrderActions.addOrder(order));
+    dispatch(CartActions.cleanCart());
+    history.push("/checkout");
   }
 
   return (
