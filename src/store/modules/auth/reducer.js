@@ -1,5 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { login, logout } from "./actions";
+import { cleanCart } from "../cart/actions";
 
 const INITIAL_STATE = {
   isAuthenticated: false,

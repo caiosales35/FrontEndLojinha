@@ -26,7 +26,6 @@ function MyCart() {
 
 function PrivateRoute({ component: Component, ...rest }) {
   const { isAuthenticated } = useSelector((state) => state.auth);
-
   return (
     <Route
       {...rest}
@@ -41,11 +40,29 @@ function PrivateRoute({ component: Component, ...rest }) {
   );
 }
 
+function PublicRoute({ component: Component, ...rest }) {
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        isAuthenticated ? (
+          <Redirect
+            to={{ pathname: "/feed", state: { from: props.location } }}
+          />
+        ) : (
+          <Component {...props} />
+        )
+      }
+    />
+  );
+}
+
 function Routes() {
   return (
     <Switch>
-      <Route path="/" exact component={Initial} />
-      <Route path="/register" component={Register} />
+      <PublicRoute path="/" exact component={Initial} />
+      <PublicRoute path="/register" component={Register} />
       <PrivateRoute path="/feed" component={ProductsFeed} />
       <PrivateRoute path="/cart" component={MyCart} />
     </Switch>

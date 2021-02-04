@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FiShoppingBag, FiPower } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/modules/auth/actions";
+import { cleanCart } from "../../store/modules/cart/actions";
 
 import "./styles.css";
 
@@ -14,6 +15,7 @@ export default function Header() {
   const dispatch = useDispatch();
 
   function handleLogout() {
+    dispatch(cleanCart());
     dispatch(logout());
   }
 

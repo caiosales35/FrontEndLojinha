@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { addToCart, removeFromCart, updateAmount } from "./actions";
+import { addToCart, removeFromCart, updateAmount, cleanCart } from "./actions";
 
 const cart = createReducer([], {
   [addToCart]: (state, action) => {
@@ -32,6 +32,10 @@ const cart = createReducer([], {
         state[productIndex].amount = Number(amount);
       }
     }
+    return state;
+  },
+  [cleanCart]: (state, action) => {
+    state = [];
     return state;
   },
 });
