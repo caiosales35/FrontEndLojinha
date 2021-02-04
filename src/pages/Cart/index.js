@@ -4,6 +4,7 @@ import { FiPlusCircle, FiMinusCircle, FiXCircle } from "react-icons/fi";
 import getValidaCupom from "../../services/cupom";
 import message from "../../components/MessageAlert/messageAlert";
 import * as CartActions from "../../store/modules/cart/actions";
+import * as OrderActions from "../../store/modules/order/actions";
 import "./styles.css";
 
 function Cart() {
@@ -81,7 +82,8 @@ function Cart() {
       payment,
       user,
     };
-    console.log(order);
+    // salva no redux, limpa carrinho, e redireciona para pagina de visualizar pedido
+    dispatch(OrderActions.addOrder(order));
   }
 
   return (
