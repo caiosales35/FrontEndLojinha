@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Initial from "./pages/Initial";
 import Header from "./components/Header";
 import Register from "./pages/Register";
@@ -23,13 +23,28 @@ function MyCart() {
   );
 }
 
+function PrivateRoute({ component: Component, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        false ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        )
+      }
+    />
+  );
+}
+
 function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={Initial} />
       <Route path="/register" component={Register} />
-      <Route path="/feed" component={ProductsFeed} />
-      <Route path="/cart" component={MyCart} />
+      <PrivateRoute path="/feed" component={ProductsFeed} />
+      <PrivateRoute path="/cart" component={MyCart} />
     </Switch>
   );
 }
