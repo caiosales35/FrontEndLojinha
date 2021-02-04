@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FiPlusCircle, FiMinusCircle, FiXCircle } from "react-icons/fi";
 import message from "../../components/MessageAlert/messageAlert";
@@ -30,6 +30,9 @@ function Cart() {
     }, 0)
   );
   const [totalDesconto, setTotalDesconto] = useState(total);
+  useEffect(() => {
+    setTotalDesconto(total);
+  }, [total]);
 
   function increment(product) {
     dispatch(
@@ -160,7 +163,7 @@ function Cart() {
               required
             />
             <input
-              placeholder="Validade dd/aa"
+              placeholder="Validade mm/aa"
               value={vData}
               onChange={(e) => setVData(e.target.value)}
               required
