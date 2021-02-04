@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { FiLogIn } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/modules/auth/actions";
+
 import signIn from "../../services/auth";
 import message from "../../components/MessageAlert/messageAlert";
 import initialImage from "../../assets/images/laptop.png";
@@ -11,12 +14,15 @@ function Initial() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   async function handleLogin(e) {
     e.preventDefault();
     signIn(email, password)
       .then((response) => {
-        message("Login efetua do :)", response.user.name);
-        // redirecionar para a tela de produtos
+        dispatch(login(response.user));
+        history.push("/feed");
       })
       .catch((erro) => {
         message("Erro", erro);
