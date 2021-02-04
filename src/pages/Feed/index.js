@@ -45,7 +45,7 @@ export default function Feed() {
               {product.stock > 0 ? (
                 <button type="button" onClick={() => handleAddProduct(product)}>
                   <div>
-                    <FiShoppingBag size={16} color="#33BFCB" />{" "}
+                    <FiShoppingBag size={16} color="#4e44dd" />{" "}
                     {amount[product.id] || 0}
                   </div>
                   <span>Adicionar</span>

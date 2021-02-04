@@ -15,7 +15,7 @@
 .product-container {
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: #f0f0f5;
   border-radius: 4px;
   padding: 16px;
   width: 220px;
@@ -42,7 +42,7 @@
 .product-container button {
   background: transparent;
   color: #878c99;
-  border: 2px solid #33bfcb;
+  border: 2px solid #4e44dd;
   border-radius: 4px;
   overflow: hidden;
   margin-top: auto;
@@ -52,9 +52,9 @@
 }
 
 .product-container button:hover {
-  border: 2px solid #33bfcb;
-  color: #fff;
-  background: #33bfcb;
+  border: 2px solid #4e44dd;
+  color: #f0f0f5;
+  background: #4e44dd;
 }
 
 .product-container button div {
@@ -62,8 +62,8 @@
   align-items: center;
   padding: 12px;
   color: #878c99;
-  background: #fff;
-  border-right: 2px solid #33bfcb;
+  background: #f0f0f5;
+  border-right: 2px solid #4e44dd;
 }
 
 .product-container button div svg {
