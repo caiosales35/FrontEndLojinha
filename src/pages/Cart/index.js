@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FiPlusCircle, FiMinusCircle, FiXCircle } from "react-icons/fi";
+import getValidaCupom from "../../services/cupom";
 import message from "../../components/MessageAlert/messageAlert";
 import * as CartActions from "../../store/modules/cart/actions";
 import "./styles.css";
@@ -8,11 +9,13 @@ import "./styles.css";
 function Cart() {
   const [payment, setPayment] = useState("boleto");
   const [cupom, setCupom] = useState("");
+  const [desconto, setDesconto] = useState(0);
   const [name, setName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [vData, setVData] = useState("");
   const [sCode, setSCode] = useState("");
   const [months, setMonths] = useState("");
+  const user = useSelector((state) => state.auth.user);
 
   const [isCard, setIsCard] = useState(false);
   const dispatch = useDispatch();
@@ -29,10 +32,11 @@ function Cart() {
       return totalSum + product.price * product.amount;
     }, 0)
   );
+
   const [totalDesconto, setTotalDesconto] = useState(total);
   useEffect(() => {
-    setTotalDesconto(total);
-  }, [total]);
+    setTotalDesconto(total - total * desconto);
+  }, [total, desconto]);
 
   function increment(product) {
     dispatch(
@@ -57,14 +61,27 @@ function Cart() {
     value === "boleto" ? setIsCard(false) : setIsCard(true);
   }
 
-  function validarCupom() {
-    const isValid = { valid: true, desconto: 0.3 }; // faz uma chamada na api pra validar o cupom
-    if (isValid.valid) {
-      setTotalDesconto(total - total * isValid.desconto);
-      message("Cupom aplicado :)");
-    } else {
-      message("Cupom invalido :(");
-    }
+  async function validarCupom() {
+    // recebe valor entre 0.0 e 1.0 para fazer o desconto
+    getValidaCupom(cupom)
+      .then((result) => {
+        setDesconto(result.desconto);
+        message("Cupom aplicado :)");
+      })
+      .catch((error) => message("Erro :(", error));
+  }
+
+  function checkout() {
+    const order = {
+      cart,
+      total,
+      totalDesconto,
+      cupom,
+      desconto,
+      payment,
+      user,
+    };
+    console.log(order);
   }
 
   return (
@@ -129,8 +146,20 @@ function Cart() {
             </select>
           </div>
 
+          <div>
+            <input
+              placeholder="Digite seu cupom"
+              value={cupom}
+              onChange={(e) => setCupom(e.target.value)}
+            />
+            <button onClick={validarCupom}>Aplicar cupom</button>
+          </div>
+
           <div className="total">
             <span>Total: R$ {total.toFixed(3).slice(0, -1)}</span>
+            <span>
+              Total com desconto: R$ {totalDesconto.toFixed(3).slice(0, -1)}
+            </span>
             <span>
               Pagamento:{" "}
               {payment === "boleto"
@@ -183,7 +212,7 @@ function Cart() {
         )}
 
         <footer>
-          <button type="button">Finalizar Compra</button>
+          <button onClick={checkout}>Finalizar Compra</button>
         </footer>
       </div>
     </main>
