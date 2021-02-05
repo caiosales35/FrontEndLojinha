@@ -43,6 +43,7 @@ function Initial() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            autocomplete="email"
           />
           <input
             type="password"
@@ -50,6 +51,7 @@ function Initial() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autocomplete="password"
           />
           <button className="button" type="submit">
             Entrar

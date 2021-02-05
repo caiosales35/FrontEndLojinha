@@ -58,6 +58,8 @@ export default function Register() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            autocomplete="name"
+            name="name"
           />
           <input
             type="text"
@@ -79,6 +81,7 @@ export default function Register() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            autocomplete="name"
           />
           <input
             type="password"
@@ -86,6 +89,7 @@ export default function Register() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autocomplete="new-password"
           />
           <button type="submit" className="button">
             Criar meu cadastro
