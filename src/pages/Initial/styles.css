@@ -1,0 +1,39 @@
+.logon-container {
+  width: 100%;
+  max-width: 1120px;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logon-container section.form {
+  width: 100%;
+  max-width: 350px;
+  margin-right: 15px;
+  margin-left: 15px;
+  text-align: center;
+}
+
+.logon-container section.form img {
+  height: 30%;
+  width: 30%;
+}
+
+.logon-container img {
+  padding: 15px;
+  max-width: 596px;
+  max-height: 500px;
+}
+
+@media (max-width: 575px) {
+  .logon-container {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .logon-container img {
+    height: 40vh;
+    width: 50vw;
+  }
+}
