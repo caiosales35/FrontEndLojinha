@@ -52,7 +52,14 @@
   color: black;
 }
 
+.label {
+  color: black;
+}
+
 @media (max-width: 700px) {
+  a {
+    margin-bottom: 30px;
+  }
   .register-container .content {
     flex-direction: column;
     justify-content: center;

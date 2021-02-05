@@ -53,39 +53,61 @@ export default function Register() {
           </Link>
         </section>
         <form onSubmit={handleRegister}>
+          <label className="label" htmlFor="idName">
+            Nome:
+          </label>
           <input
-            placeholder="Nome"
+            placeholder="Seu nome"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            autoComplete="name"
+            id="idName"
           />
+          <label className="label" htmlFor="idCpf">
+            CPF:
+          </label>
           <input
             type="text"
-            placeholder="CPF - apenas números"
+            placeholder="Apenas números"
             value={cpf}
             onChange={(e) => setCpf(e.target.value)}
             required
+            id="idCpf"
           />
+          <label className="label" htmlFor="idNascimento">
+            Data de Nascimento:
+          </label>
           <input
             type="date"
-            placeholder="Data de nascimento"
             value={dateB}
             onChange={(e) => setDateB(e.target.value)}
             required
+            id="idNascimento"
           />
+          <label className="label" htmlFor="idEmail">
+            Email:
+          </label>
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Seu email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            autoComplete="name"
+            id="idEmail"
           />
+          <label className="label" htmlFor="idSenha">
+            Senha:
+          </label>
           <input
             type="password"
-            placeholder="Senha"
+            placeholder="Uma senha segura"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete="new-password"
+            id="idSenha"
           />
           <button type="submit" className="button">
             Criar meu cadastro

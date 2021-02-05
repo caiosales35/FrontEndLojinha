@@ -16,7 +16,7 @@ function Cart() {
   const [cardNumber, setCardNumber] = useState("");
   const [vData, setVData] = useState("");
   const [sCode, setSCode] = useState("");
-  const [months, setMonths] = useState("");
+  const [months, setMonths] = useState(1);
   const user = useSelector((state) => state.auth.user);
   const [isCard, setIsCard] = useState(false);
 
@@ -75,6 +75,13 @@ function Cart() {
   }
 
   function checkout() {
+    if (isCard && (!name || !cardNumber || !vData || !sCode)) {
+      message(
+        "Erro!",
+        "Preencha todos os campos referentes ao cartão de crédito"
+      );
+      return;
+    }
     const order = {
       cart,
       total,
@@ -179,39 +186,65 @@ function Cart() {
         </div>
         {isCard ? (
           <div className="card-container">
-            <input
-              placeholder="Nome do titular do cartão"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-            <input
-              placeholder="Número do cartão"
-              value={cardNumber}
-              onChange={(e) => setCardNumber(e.target.value)}
-              required
-            />
-            <input
-              placeholder="Código de segurança"
-              value={sCode}
-              onChange={(e) => setSCode(e.target.value)}
-              required
-            />
-            <input
-              placeholder="Validade mm/aa"
-              value={vData}
-              onChange={(e) => setVData(e.target.value)}
-              required
-            />
-            <input
-              placeholder="Parcelas"
-              value={months}
-              type="number"
-              min="1"
-              max="12"
-              onChange={(e) => setMonths(e.target.value)}
-              required
-            />
+            <div>
+              <label htmlFor="idTitular">Titular:</label>
+              <input
+                placeholder="Nome do titular do cartão"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                autoComplete="cc-name"
+                id="idTitular"
+              />
+            </div>
+            <div>
+              <label htmlFor="idNumero">Número:</label>
+              <input
+                placeholder="Apenas números"
+                value={cardNumber}
+                onChange={(e) => setCardNumber(e.target.value)}
+                required
+                autoComplete="cc-name"
+                id="idNumero"
+                type="number"
+              />
+            </div>
+            <div>
+              <label htmlFor="idCVC">CVC:</label>
+              <input
+                placeholder="Código de segurança"
+                value={sCode}
+                onChange={(e) => setSCode(e.target.value)}
+                required
+                autoComplete="cc-csc"
+                id="idCVC"
+                type="number"
+              />
+            </div>
+            <div>
+              <label htmlFor="idExp">Validade:</label>
+              <input
+                placeholder="MM-AAAA"
+                value={vData}
+                onChange={(e) => setVData(e.target.value)}
+                required
+                autoComplete="cc-exp"
+                id="idExp"
+              />
+            </div>
+            <div>
+              <label htmlFor="idP">Parcelas</label>
+              <input
+                placeholder="Parcelas"
+                value={months}
+                type="number"
+                min="1"
+                max="12"
+                onChange={(e) => setMonths(e.target.value)}
+                required
+                id="idP"
+              />
+            </div>
           </div>
         ) : (
           <></>

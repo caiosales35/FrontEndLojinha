@@ -21,6 +21,10 @@
   width: 30%;
 }
 
+.logon-container section.form form {
+  text-align: left;
+}
+
 .logon-container img {
   padding: 15px;
   max-width: 596px;
