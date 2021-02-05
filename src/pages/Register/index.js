@@ -53,7 +53,7 @@ export default function Register() {
           </Link>
         </section>
         <form onSubmit={handleRegister}>
-          <label className="label" for="idName">
+          <label className="label" htmlFor="idName">
             Nome:
           </label>
           <input
@@ -61,10 +61,10 @@ export default function Register() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            autocomplete="name"
+            autoComplete="name"
             id="idName"
           />
-          <label className="label" for="idCpf">
+          <label className="label" htmlFor="idCpf">
             CPF:
           </label>
           <input
@@ -75,7 +75,7 @@ export default function Register() {
             required
             id="idCpf"
           />
-          <label className="label" for="idNascimento">
+          <label className="label" htmlFor="idNascimento">
             Data de Nascimento:
           </label>
           <input
@@ -85,7 +85,7 @@ export default function Register() {
             required
             id="idNascimento"
           />
-          <label className="label" for="idEmail">
+          <label className="label" htmlFor="idEmail">
             Email:
           </label>
           <input
@@ -94,10 +94,10 @@ export default function Register() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            autocomplete="name"
+            autoComplete="name"
             id="idEmail"
           />
-          <label className="label" for="idSenha">
+          <label className="label" htmlFor="idSenha">
             Senha:
           </label>
           <input
@@ -106,7 +106,7 @@ export default function Register() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            autocomplete="new-password"
+            autoComplete="new-password"
             id="idSenha"
           />
           <button type="submit" className="button">

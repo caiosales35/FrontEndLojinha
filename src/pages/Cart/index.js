@@ -75,6 +75,13 @@ function Cart() {
   }
 
   function checkout() {
+    if (isCard && (!name || !cardNumber || !vData || !sCode)) {
+      message(
+        "Erro!",
+        "Preencha todos os campos referentes ao cartão de crédito"
+      );
+      return;
+    }
     const order = {
       cart,
       total,
@@ -180,53 +187,53 @@ function Cart() {
         {isCard ? (
           <div className="card-container">
             <div>
-              <label for="idTitular">Titular:</label>
+              <label htmlFor="idTitular">Titular:</label>
               <input
                 placeholder="Nome do titular do cartão"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                autocomplete="cc-name"
+                autoComplete="cc-name"
                 id="idTitular"
               />
             </div>
             <div>
-              <label for="idNumero">Número:</label>
+              <label htmlFor="idNumero">Número:</label>
               <input
                 placeholder="Apenas números"
                 value={cardNumber}
                 onChange={(e) => setCardNumber(e.target.value)}
                 required
-                autocomplete="cc-name"
+                autoComplete="cc-name"
                 id="idNumero"
                 type="number"
               />
             </div>
             <div>
-              <label for="idCVC">CVC:</label>
+              <label htmlFor="idCVC">CVC:</label>
               <input
                 placeholder="Código de segurança"
                 value={sCode}
                 onChange={(e) => setSCode(e.target.value)}
                 required
-                autocomplete="cc-csc"
+                autoComplete="cc-csc"
                 id="idCVC"
                 type="number"
               />
             </div>
             <div>
-              <label for="idExp">Validade:</label>
+              <label htmlFor="idExp">Validade:</label>
               <input
                 placeholder="MM-AAAA"
                 value={vData}
                 onChange={(e) => setVData(e.target.value)}
                 required
-                autocomplete="cc-exp"
+                autoComplete="cc-exp"
                 id="idExp"
               />
             </div>
             <div>
-              <label for="idP">Parcelas</label>
+              <label htmlFor="idP">Parcelas</label>
               <input
                 placeholder="Parcelas"
                 value={months}

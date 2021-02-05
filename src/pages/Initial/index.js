@@ -37,24 +37,24 @@ function Initial() {
       <section className="form">
         <img src={logoImage} alt="Logo Lojinha" />
         <form onSubmit={handleLogin}>
-          <label for="idEmail">Email:</label>
+          <label htmlFor="idEmail">Email:</label>
           <input
             type="email"
             placeholder="Seu email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            autocomplete="email"
+            autoComplete="email"
             id="idEmail"
           />
-          <label for="idSenha">Senha:</label>
+          <label htmlFor="idSenha">Senha:</label>
           <input
             type="password"
             placeholder="Sua senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            autocomplete="password"
+            autoComplete="password"
             id="idSenha"
           />
           <button className="button" type="submit">
