@@ -34,9 +34,10 @@ function Initial() {
   return (
     <div className="logon-container initial-bg">
       <img src={initialImage} alt="lojinha" className="d-none d-sm-block" />
-      <section className="form text-center">
+      <section className="form">
         <img src={logoImage} alt="Logo Lojinha" />
         <form onSubmit={handleLogin}>
+          <label for="idEmail">Email:</label>
           <input
             type="email"
             placeholder="Seu email"
@@ -44,7 +45,9 @@ function Initial() {
             onChange={(e) => setEmail(e.target.value)}
             required
             autocomplete="email"
+            id="idEmail"
           />
+          <label for="idSenha">Senha:</label>
           <input
             type="password"
             placeholder="Sua senha"
@@ -52,6 +55,7 @@ function Initial() {
             onChange={(e) => setPassword(e.target.value)}
             required
             autocomplete="password"
+            id="idSenha"
           />
           <button className="button" type="submit">
             Entrar
